@@ -1,0 +1,28 @@
+{ "book": [
+	
+	{
+		"title": "Speaking the Language of Desire: The Films of Carl Dreyer",
+		"author": "Raymond Carney",
+		"publication date": "March 31, 1989",
+		"pages": 384,
+		"publisher": "Cambridge University Press"
+	},
+	
+	{
+		"title": "The Ongoing Moment",
+		"author": "Geoff Dyer",
+		"publication date": "March 13, 2007",
+		"pages": 304,
+		"publisher": "Vintage"
+	},
+	
+	{
+		"title": "Selected Essays",
+		"author": ["John Berger", "Geoff Dyer"],
+		"publication date": "March 11, 2003",
+		"pages": 608,
+		"publisher": "Vintage"
+	},
+	
+  	]
+}
