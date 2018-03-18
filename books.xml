@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<Items>
 <Book>
 	<Title>Speaking the Language of Desire: The Films of Carl Dreyer</Title>
 	<Author>Raymond Carney</Author>
@@ -6,7 +7,6 @@
 	<Pages>384</Pages>
 	<Publisher>Cambridge University Press</Publisher>
 </Book>
-
 <Book>
 	<Title>The Ongoing Moment</Title>
 	<Author>Geoff Dyer</Author>
@@ -14,7 +14,6 @@
 	<Pages>304</Pages>
 	<Publisher>Vintage</Publisher>
 </Book>
-
 <Book>
 	<Title>Selected Essays</Title>
 	<Author>John Berger</Author>
@@ -23,3 +22,4 @@
 	<Pages>608</Pages>
 	<Publisher>Vintage</Publisher>
 </Book>
+</Items>
