@@ -1,25 +1,17 @@
 <?xml version="1.0"?>
 <Items>
-<Book>
+<Book Publisher = "Cambridge University Press" PublicationDate = "March 31, 1989" Pages = "384">
 	<Title>Speaking the Language of Desire: The Films of Carl Dreyer</Title>
 	<Author>Raymond Carney</Author>
-	<PublicationDate>March 31, 1989</PublicationDate>
-	<Pages>384</Pages>
-	<Publisher>Cambridge University Press</Publisher>
 </Book>
-<Book>
+<Book Publisher = "Vintage" PublicationDate = "March 13, 2007" Pages = "304">
 	<Title>The Ongoing Moment</Title>
 	<Author>Geoff Dyer</Author>
-	<PublicationDate>March 13, 2007</PublicationDate>
-	<Pages>304</Pages>
 	<Publisher>Vintage</Publisher>
 </Book>
-<Book>
+<Book Publisher = "Vintage" PublicationDate = "March 11, 2003" Pages = "608">
 	<Title>Selected Essays</Title>
 	<Author>John Berger</Author>
 	<Author>Geoff Dyer</Author>
-	<PublicationDate>March 11, 2003</PublicationDate>
-	<Pages>608</Pages>
-	<Publisher>Vintage</Publisher>
 </Book>
 </Items>

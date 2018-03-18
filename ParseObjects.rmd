@@ -1,0 +1,96 @@
+---
+title: "ParseObjects"
+author: "Ryan Weber"
+date: "March 17, 2018"
+output: 
+  html_document:
+    theme: lumen
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load packages
+```{r, echo=FALSE}
+library(XML)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(RCurl)
+library(xml2)
+library(rvest)
+library(jsonlite)
+```
+
+## Parse XML
+```{r}
+# Read in file
+xmlDoc <- read_xml("/Users/ryanweber/Desktop/CUNY/Data 607 Db/Assignments/Week 7/Assignment07/books.xml")
+
+# Get root
+nodes <- xmlDoc %>% xml_nodes('Book') 
+
+xmlDf <- NULL
+
+# For each item, parse out columns
+for (i in 1:length(nodes))
+{
+  node <- nodes[[i]]
+  
+  tempDf <- NULL
+  
+  tempDf$obTitle <- node %>% xml_nodes('Title') %>% xml_text
+  tempDf$obAuthor <- node %>% xml_nodes('Author') %>% xml_text %>% paste(., collapse=",")
+  tempDf$obPub <- node %>% xml_attr('Publisher')
+  tempDf$obPubDate <- node %>% xml_attr('PublicationDate')
+  tempDf$obPages <- node %>% xml_attr('Pages')
+  
+  xmlDf <- bind_rows(xmlDf, tempDf)
+}
+
+# Separate out author values
+names(xmlDf) <- c("Title", "Author", "Publisher", "PublicationDate", "Pages")
+xmlDf <- xmlDf %>% separate(Author, c("Author1", "Author2"), ",")
+xmlDf$Pages <- as.numeric(xmlDf$Pages)
+```
+
+## Parse JSON
+
+```{r}
+# Read in file
+jsonOb <- fromJSON("/Users/ryanweber/Desktop/CUNY/Data 607 Db/Assignments/Week 7/Assignment07/books.json")
+jsonDf <- as.data.frame(jsonOb, stringsAsFactors = FALSE)
+
+# Convert author list to comma-separated string
+jsonDf <- jsonDf %>% group_by(book.title) %>% mutate(book.author = paste(unlist(book.author), collapse=",")) %>%
+  ungroup()
+
+# Separate out author values
+names(jsonDf) <- c("Title", "Author", "Publisher", "PublicationDate", "Pages")
+jsonDf <- jsonDf %>% separate(Author, c("Author1", "Author2"), ",")
+jsonDf$Pages <- as.numeric(jsonDf$Pages)
+```
+
+## Parse HTML
+
+```{r}
+# Read in file
+htmlDf <- readHTMLTable("/Users/ryanweber/Desktop/CUNY/Data 607 Db/Assignments/Week 7/Assignment07/books.html", which = 1, stringsAsFactors = FALSE, header = TRUE)
+
+# Separate out author values
+htmlDf <- htmlDf %>% separate(Author, c("Author1", "Author2"), ",") %>%
+  rename(PublicationDate = Publication)
+
+htmlDf$Pages <- as.numeric(htmlDf$Pages)
+```
+
+## Compare dataframes
+
+```{r}
+xmlDf
+jsonDf
+htmlDf
+```
+
